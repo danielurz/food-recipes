@@ -55,7 +55,7 @@ function iniciarApp() {
 
         const heading = document.createElement('h2')
         heading.classList.add('text-center','text-black','my-5')
-        heading.textContent = recetas.length ? `Resultados: ${recetas.length} recetas` : 'No hay resultados'
+        heading.textContent = recetas.length ? `Results: ${recetas.length} recepes` : 'No Results'
         resultado.appendChild(heading)
 
         recetas.map(receta => {
@@ -82,10 +82,10 @@ function iniciarApp() {
                 seleccionarReceta(id ?? receta.id)
             }
             
-            recetaImagen.alt = `Imagen de la receta ${meal ?? receta.meal}`
+            recetaImagen.alt = `Image of the recepe ${meal ?? receta.meal}`
             recetaImagen.src = img ?? receta.img
             recetaHeading.textContent = meal ?? receta.meal
-            recetaButton.textContent = "Ver Receta"
+            recetaButton.textContent = "View Recepe"
 
             // APPEND HTML
             recetaCardBody.appendChild(recetaHeading)
@@ -117,10 +117,10 @@ function iniciarApp() {
 
         modalTitle.textContent = meal
         modalBody.innerHTML = `
-            <img class="img-fluid" src="${img}" alt="receta ${meal}"/>
-            <h3 class="my-3">Instrucciones</h3>
+            <img class="img-fluid" src="${img}" alt="recepe ${meal}"/>
+            <h3 class="my-3">Instructions</h3>
             <p>${instructions}</p>
-            <h3 class="my-3">Ingredientes y Cantidades</h3>
+            <h3 class="my-3">Ingredients & Amounts</h3>
         `
         const listGroup = document.createElement('ul')
         listGroup.classList.add('list-group')
@@ -146,25 +146,25 @@ function iniciarApp() {
         //Botones de cerrar y favorito
         const btnFavorito = document.createElement('button')
         btnFavorito.classList.add('btn','btn-danger','col')
-        btnFavorito.textContent = existeStorage(id) ? 'Eliminar Favorito' : 'Guardar Favorito'
+        btnFavorito.textContent = existeStorage(id) ? 'Delete Favorite' : 'Save Favorite'
 
         // Localstorage
 
         btnFavorito.onclick = function() {
             if (existeStorage(id)) {
                 eliminarFavorito(id)
-                btnFavorito.textContent = 'Guardar Favorito'
-                mostrarToast('Eliminado Correctamente')
+                btnFavorito.textContent = 'Save Favorite'
+                mostrarToast('Deleted Succesfully')
                 return
             }
             agregarFavorito({id,meal,img})
-            btnFavorito.textContent = 'Eliminar Favorito'
-            mostrarToast('Agregado Correctamente')
+            btnFavorito.textContent = 'Delete'
+            mostrarToast('Added Succesfully')
         }
 
         const btnCerrarModal = document.createElement('button')
         btnCerrarModal.classList.add('btn','btn-secondary','col')
-        btnCerrarModal.textContent = "Cerrar"
+        btnCerrarModal.textContent = "Close"
         btnCerrarModal.onclick = function() {
             modal.hide()
         }
@@ -210,7 +210,7 @@ function iniciarApp() {
         } 
 
         const noFavoritos = document.createElement('p')
-        noFavoritos.textContent = 'No hay favoritos aun'
+        noFavoritos.textContent = 'No favorites yet'
         noFavoritos.classList.add('fs-4','text-center','font-bold','mt-5')
         resultado.appendChild(noFavoritos)
     }
